@@ -1,0 +1,8 @@
+1. How does your data structure allow developers to access and manipulate the data?
+  Used an array for the data structure. Developers can use an index to locate and manipulate data in the array.
+
+2. If a developer wanted to find a specific element in your data structure, how would you search for it?
+  Use an index. If the developer does not know the index, he/she can use the 'index()' method to figure it out.
+
+3. What other real-world data can each structure represent?
+  A time schedule for a public transportation, a recipe in creating a meal, and etc.
