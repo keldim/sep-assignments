@@ -1,0 +1,8 @@
+1. when the size of the array is small, doubling the size won't be a big deal,
+but as the size increases and the array continues to double due to collision,
+the array will use too much of the computer's memory
+
+2. doubling the size is a slow operation
+
+3. doubling the size leads to fragmentation because
+there is an excess space relative to the actual data and the data will be scattered 

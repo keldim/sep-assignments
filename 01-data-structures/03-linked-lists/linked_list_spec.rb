@@ -7,7 +7,7 @@ RSpec.describe LinkedList, type: Class do
   let(:n1) { Node.new("Rob") }
   let(:n2) { Node.new("Ben") }
   let(:n3) { Node.new("Mike") }
-  let(:llist) { LinkedList.new }
+  let(:llist) { LinkedList.new } 
 
   describe "#add_to_tail" do
     it "adds a Node to the tail" do
