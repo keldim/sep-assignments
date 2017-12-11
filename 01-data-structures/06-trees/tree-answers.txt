@@ -1,0 +1,10 @@
+I expected tree to take a longer time to insert, find, delete than heap because I thought heap had a more simpler
+structure of because it simply put smaller data on either left or right while tree would put smaller one on the left and bigger one on the right.
+
+
+but heap took longer on the benchmark test.
+this might be because of inefficient code that I wrote for the heap.
+
+I think tree will be used when the data structure and organization
+is more important than storing and finding data fast.
+heap will be used to store and find data fast.

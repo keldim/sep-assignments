@@ -6,6 +6,8 @@ class Node
   attr_accessor :parent
   attr_accessor :parnet_counter
   attr_accessor :temp_right
+  attr_accessor :temp_1
+  attr_accessor :temp_2
 
   def initialize(title, rating)
     @title = title
@@ -15,5 +17,7 @@ class Node
     @parent = nil
     @parent_counter = 0
     @temp_right = nil
+    @temp_1 = nil
+    @temp_2 = nil
   end
 end
