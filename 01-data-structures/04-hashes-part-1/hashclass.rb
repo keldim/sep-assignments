@@ -40,9 +40,7 @@ class HashClass
   end
 
   def resize
-    last = size*2-1
-    @newitems=[]
-    @newitems.fill(nil, 0..last)
+    @newItems = Array.new( size * 2)
     @items.each do |item|
       if item == nil
         next
