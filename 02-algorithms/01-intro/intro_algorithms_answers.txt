@@ -1,0 +1,34 @@
+1. Calculating a tip
+
+def CalcTip (bill)
+  IF the service was below satisfactory
+    return "no tip"
+  ELSIF the service was satisfactory
+    return bill * 0.15
+  ELSIF the service was phenomenal
+    return bill * 0.20
+  END
+end
+
+2. Getting to work
+
+def GetToWork (start, deadline)
+  time = deadline-start
+  IF time < 30
+    take uber
+  ELSE
+    take subway
+  END
+end
+
+3. Lunch
+
+def WhatMenu (money)
+  IF money < 10
+    eat chipotle
+  ELSIF 10 <= money < 15
+    eat chipotle, add a drink
+  ELSE
+    return "save money by eating at chipotle"
+  END
+end
