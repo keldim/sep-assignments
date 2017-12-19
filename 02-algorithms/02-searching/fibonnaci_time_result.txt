@@ -1,0 +1,13 @@
+"iterative fibonnaci"
+  0.000000   0.000000   0.000000 (  0.000009)
+"recursive fibonnaci"
+  0.000000   0.000000   0.000000 (  0.001502)
+
+
+1. Given an unsorted collection of a million items, which algorithm would you choose between linear search and binary search? Would you use an iterative or recursive solution? Explain your reasoning.
+  cannot use recursive for unsorted, so I would use iterative
+
+2. Given a sorted collection of a million items, which algorithm would you choose between linear search and binary search? Would you use an iterative or recursive solution? Explain your reasoning.
+  since sorted, I would choose recursive
+  recursive would take shorter time because for each iteration, the amount of collection
+  will be halved and the number of items to look through will decrease
