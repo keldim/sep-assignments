@@ -2,120 +2,121 @@ require_relative 'node'
 
 class BinarySearchTree
 
-  def initialize(root)
-    @root = root
-  end
+ def initialize(root)
+   @root = root
+   @size = 1
+ end
 
-  def insert(root, node)
-    current_node = root
-    while current_node != nil
-      if current_node.left == nil && current_node.right == nil
-        if current_node.rating > node.rating
-          current_node.left = node
-          node.parent = current_node
-          current_node = nil
-        elsif current_node.rating < node.rating
-          current_node.right = node
-          node.parent = current_node
-          current_node = nil
-        end
-      elsif current_node.left != nil && current_node.right == nil
-        if current_node.rating > node.rating
-          current_node = current_node.left
-        elsif current_node.rating < node.rating
-          current_node.right = node
-          node.parent = current_node
-          current_node = nil
-        end
-      elsif current_node.left == nil && current_node.right != nil
-        if current_node.rating > node.rating
-          current_node.left = node
-          node.parent = current_node
-          current_node = nil
-        elsif current_node.rating < node.rating
-          current_node = current_node.right
-        end
-      elsif current_node.left != nil && current_node.right != nil
-        if current_node.rating > node.rating
-          current_node = current_node.left
-        elsif current_node.rating < node.rating
-          current_node = current_node.right
-        end
-      end
-    end
-  end
+ def insert(root, node)
+   if node == nil
+     return
+   end
 
-  # Recursive Depth First Search
-  def find(root, data)
-      if root.title == data
-          return root
-      end
-      left = find(root.left, data) if root.left
-      right = find(root.right, data) if root.right
-      left or right
-  end
+   if node.rating < root.rating
+     if root.left == nil
+       root.left = node
+     else
+       insert(root.left, node)
+     end
+   elsif node.rating >= root.rating
+     if root.right == nil
+       root.right = node
+     else
+       insert(root.right, node)
+     end
+   end
+ end
 
-  def delete(root, data)
-    if data == nil
-      return nil
-    end
+ # Recursive Depth First Search
+ def find(root, data)
+   if data == nil
+     return nil
+   end
 
-    temp = find(root,data)
+   if root.title == data
+     return root
+   elsif root.left != nil && root.left.title == data
+     return root.left
+   elsif root.right != nil && root.right.title == data
+     return root.right
+   end
+
+   if root.left != nil
+     node = find(root.left, data)
+   end
+
+   if root.right != nil
+     node = find(root.right, data)
+   end
+
+   return node
+ end
+
+ def delete(root, data)
+   if root == nil || data == nil
+     return nil
+   end
+
+   if root.left != nil && root.left.title == data
+     old_left = root.left
+
+     # Set the new left of the current root to the left child's left child
+     root.left = old_left.left
 
 
-    while temp != nil
-      if temp.left != nil && temp.right == nil
-        temp.left.parent = temp.parent
-        if temp.parent.rating > temp.rating
-          temp.parent.left = temp.left
-        elsif temp.parent.rating < temp.rating
-          temp.parent.right = temp.left
-        end
-        temp = temp.left
-      elsif temp.left == nil && temp.right != nil
-        temp.right.parent = temp.parent
-        if temp.parent.rating > temp.rating
-          temp.parent.left = temp.right
-        elsif temp.parent.rating < temp.rating
-          temp.parent.right = temp.right
-        end
-        temp = temp.right
-      elsif temp.left != nil && temp.right != nil
-        temp.left.parent = temp.parent
-        if temp.parent.rating > temp.rating
-          temp.parent.left = temp.left
-        elsif temp.parent.rating < temp.rating
-          temp.parent.right = temp.left
-        end
-        temp.right.parent = temp.left
-        temp.left.left.temp_right = temp.left.right
-        if temp.left.temp_right != nil
-          temp.left.right = temp.left.temp_right
-          temp.left.temp_right == nil
-        else
-          temp.left.right = temp.right
-        end
-        temp = temp.left
-      elsif temp.left == nil && temp.right == nil
-        if temp.parent.rating > temp.rating
-          temp.parent.left = nil
-        elsif temp.parent.rating < temp.rating
-          temp.parent.right = nil
-        end
-        temp = temp.left
-      end
-    end
-  end
+     # Set the left child's children to nil to cut it out of the tree
+     old_left.left = nil
+     old_left.right = nil
 
-  # Recursive Breadth First Search
-  def printf(children=nil)
-    queue = Queue.new
-    queue.enq(@root)
-    while !queue.empty?
-      value = queue.deq
-      puts "#{value.title}: #{value.rating}\n"
-      queue.enq(value.left) if value.left
-      queue.enq(value.right) if value.right
-    end
-  end
+     # We need to re-insert the left child's right child since it will otherwise be lost
+     insert(@root, old_left.right)
+   end
+
+   if root.right != nil  && root.right.title == data
+     old_right = root.right
+
+     # Set the new left of the current root to the right child's left child
+     root.right = old_right.left
+
+     # Set the left child's children to nil to cut it out of the tree
+     old_right.left = nil
+     old_right.right = nil
+
+     # We need to re-insert the right child's right child since it will otherwise be lost
+     insert(@root, old_right.right)
+   end
+
+   if root.left != nil
+     delete(root.left, data)
+   end
+
+   if root.right != nil
+     delete(root.right, data)
+   end
+
+ end
+
+ # Recursive Breadth First Search
+ def printf(children=nil)
+   if children == nil
+     children = [@root]
+   elsif children.size == 0
+     return
+   end
+
+   new_children = []
+   children.each do |child|
+     if child == nil
+       next
+     end
+
+     puts "#{child.title}: #{child.rating}"
+
+     $stdout.flush
+     new_children.push(child.left)
+     new_children.push(child.right)
+   end
+
+   printf(new_children)
+ end
 end
