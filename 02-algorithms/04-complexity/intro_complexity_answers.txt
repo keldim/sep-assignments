@@ -1,0 +1,22 @@
+1. An algorithm that has O(1) is like a person traveling by a car and an algorithm that has O(2^n) is like a person traveling
+by foot.
+
+2. finding the target at the root of the tree
+3. finding the target at the bottom of the tree
+4. finding the target in between the root and bottom of the tree
+5. see the excel file
+6. infinity
+7. O(2^n)
+8.
+
+def linear(array)
+  array.each_with_index do |value, index|
+    iteration = index + 1
+    puts "iteration: #{iteration}, value: #{value}"
+  end
+end
+
+9. see the excel file
+10. O(log n)
+11. O(1)
+12. O(log n)
