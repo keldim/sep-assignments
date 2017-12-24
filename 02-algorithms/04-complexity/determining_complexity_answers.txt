@@ -1,0 +1,6 @@
+1. O(1), simply printing out the input, always going to take the same time
+2. O(n), as the size of input increases, the number of operations executed grows at the same rate
+3. O(n), as the size of input increases, the number of operations executed grows at the same rate
+4. O(2^n), every time the function runs, there will be 2 recursive calls
+5. O(n), as the size of input increases, the number of operations executed grows at the same rate
+6. O(n^2), seems like a quick sort, quick sort has a worst case performance of O(n^2)
