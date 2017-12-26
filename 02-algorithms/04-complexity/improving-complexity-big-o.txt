@@ -1,0 +1,6 @@
+version one O(n^2)
+version two O(n)
+version three O(n)
+
+for version three, i tried to use hash or linked list, but i felt using them would make
+the function more complicated and result in slower execution time
