@@ -1,0 +1,51 @@
+1.
+  A Clockwork Orange => string
+  42 => integer
+  09/02/1945 => date
+  98.7 => float
+  15.99 => float
+
+2.
+  database =>
+  1. when multiple users need to access and manipulate data while using the application
+  2. data do not have to be human readable when stored
+
+  text file =>
+  1. when a single user need to access and manipulate data while using the application
+  2. data have to be human readable when stored
+
+
+
+3. Unlike many programming languages, SQL uses a single = symbol for equality instead of ==
+
+4, 5
+
+  All the registered users for a website can be stored in a table format with
+  columns labeled according to what is stored there and
+  rows that represent individual users. A column will have a label such as "nickname" or "email".
+  A row will have all the info ("nickname", "email"...) of an individual user.
+  Each "cell" in the table (the intersection of the column and row)
+  contains a particular value - some piece of information that
+  the column name describes. A value in row 5, column "email" will have "stetfe@gmail.com"
+
+
+6. integer, date, string
+
+7.
+  1. returns the date and amount columns from the payments table
+  2. returns the amount column from the payments table with values greater than 500
+  3. returns the row from the payments table where the value in payee column equals "Mega Foods"
+
+8.
+
+  1.  SELECT email, signup
+      FROM users
+      WHERE name = DeAndre Data;
+
+  2.  SELECT userid
+      FROM users
+      WHERE email = aleesia.algorithm@uw.edu;
+
+  3.  SELECT *
+      FROM users
+      WHERE userid = 4;
