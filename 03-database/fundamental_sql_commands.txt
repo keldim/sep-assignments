@@ -1,0 +1,93 @@
+1, 2
+  adding: INSERT INTO ... VALUES
+  updating: UPDATE ... SET ... WHERE
+  deleting: DELETE ... FROM ... WHERE
+
+3. start date => date, name => text , quantity => numeric
+
+4.
+  a. First and last name => text
+     Whether they sent in their RSVP => boolean
+     Number of guests => numeric
+     Number of meals => numeric
+
+  b. CREATE TABLE wedding (
+       first_name text,
+       last_name text,
+       rsvp boolean,
+       guests numeric,
+       meals numeric
+     );
+
+  c. ALTER TABLE wedding ADD COLUMN thank_you_card boolean;
+
+  d. ALTER TABLE wedding DROP COLUMN meals;
+
+  e. ALTER TABLE wedding ADD COLUMN table_number numeric;
+
+  f. DROP TABLE wedding;
+
+  5.
+    a. CREATE TABLE books (
+        ISBN numeric,
+        title text,
+        author text,
+        genre text,
+        publishing_date date,
+        number_of_copies numeric,
+        available_copies numeric
+       );
+
+    b. INSERT INTO books (ISBN, title, author, genre, publishing_date, number_of_copies, available_copies)
+       VALUES
+       (11773, 'South Face Jacket', 'Jack', 'thriller', 1999-01-05, 5, 5),
+       (11774, 'Big Mountain 2-Person Tent', 'Tom', 'sci-fi', 2000-02-02, 6, 6),
+       (11775, 'King Cole Camp Stove', 'Charlie', 'finance', 2002-03-03, 8, 8);
+
+    c. UPDATE books SET available_copies=4 WHERE ISBN=11773;
+
+    d. DELETE FROM books WHERE ISBN=11773;
+
+  6.
+    a. CREATE TABLE spacecrafts (
+        id numeric,
+        name text,
+        year_launch numeric,
+        country text,
+        description text,
+        orbiting_body text,
+        operation boolean,
+        miles_apart numeric
+       );
+
+    b. INSERT INTO spacecrafts (id, name, year_launch, country, description, orbiting_body, operation, miles_apart)
+       VALUES
+       (11773, 'South Face Jacket', 1990, 'usa', 'take pictures', 'mars', TRUE, 555),
+       (11774, 'Big Mountain 2-Person Tent', 1988, 'russia', 'collect rocks', 'neptune', TRUE, 666),
+       (11775, 'King Cole Camp Stove', '1992', 'usa', 'collect air', 'saturn', TRUE, 888);
+
+    c. DELETE FROM spacecrafts WHERE id=11773;
+
+    d. UPDATE spacecrafts SET operation=FALSE WHERE id=11775;
+
+  7.
+    a. CREATE TABLE emails (
+      id numeric,
+      subject text,
+      sender text,
+      additional_recipients text,
+      body text,
+      timestamp timestamp,
+      read boolean,
+      email_chain_id numeric
+     );
+
+    b. INSERT INTO emails (id, subject, sender, additional_recipients, body, timestamp, read, email_chain_id)
+       VALUES
+       (11773, 'South Face Jacket', 'nobody', 'no people', 'meet tomorrow', TIMESTAMP '2013-03-13 19:06:00', TRUE, 11773),
+       (11774, 'Big Mountain 2-Person Tent', 'somebody', 'no people', 'meet today', TIMESTAMP '2013-03-13 17:06:00', TRUE, 11774),
+       (11775, 'King Cole Camp Stove', 'anybody', 'jackie', 'no meeting', TIMESTAMP '2013-03-13 20:06:00', TRUE, 11775);
+
+    c. DELETE FROM emails WHERE id=11773;
+
+    d. UPDATE emails SET read=FALSE WHERE id=11775;
