@@ -1,0 +1,28 @@
+Create a pets database. Create a dogs table using this file. From the dogs table
+with the columns id, name, gender, age, weight, intake_date, breed, and in_foster,
+write statements to select the following pieces of data.
+
+  a. SELECT name, gender, age FROM dogs WHERE breed LIKE 'labrador%';
+  b. SELECT id  FROM dogs WHERE age<1;
+  c. SELECT name, age FROM dogs WHERE gender = 'F' AND weight > 35;
+  d. SELECT * FROM dogs WHERE breed NOT LIKE '%shepherd';
+  e. SELECT id, age, weight, breed FROM dogs WHERE weight > 60 OR breed = 'great dane';
+
+From the cats table below, what pieces of data would be returned from these queries?
+
+  a. name and adoption_date columns from cats table
+  b. name and age columns from cats table
+
+From the cats table, write queries to select the following pieces of data.
+
+  a. SELECT * FROM cats;
+  b. SELECT * FROM cats WHERE age = 1;
+     SELECT * FROM cats WHERE age = 3;
+     SELECT * FROM cats WHERE age = 7;
+  c. SELECT name FROM cats;
+
+From the cats table below, what data would be returned from these queries?
+
+  a. name column from cats table where gender is female
+  b. name column from cats table where age is not 3
+  c. id column from cats table where name is not 'Mushi' and gender is male
