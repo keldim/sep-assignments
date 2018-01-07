@@ -1,0 +1,27 @@
+Create a database called iron-bank-foundation.
+Create a donations table, and import CSV data from this file.
+Select the following data from the table:
+
+  a. SELECT SUM(amount) FROM donations;
+  b. SELECT SUM(amount) AS total_donation, donor FROM donations GROUP BY donor;
+  c. SELECT AVG (amount) AS avg_donation, donor FROM donations GROUP BY donor;
+  d. SELECT COUNT (amount) FROM donations WHERE amount > 100;
+  e. SELECT MAX (amount) FROM donations;
+  f. SELECT MIN (amount) FROM donations;
+
+
+Correct the following SELECT statement:
+
+  SELECT SUM (amount) AS total_amount, id
+  FROM payment
+  GROUP BY id
+  HAVING total_amount > 200;
+
+
+Write queries to retrieve the following information.
+
+  a. SELECT * FROM cats ORDER BY intake_date;
+  b. SELECT * FROM adoptions ORDER BY date DESC LIMIT 5;
+  c. SELECT * FROM cats WHERE gender = female AND age >= 2;
+  d. SELECT SUM(amount) AS total_donation, donor FROM donations GROUP BY donor ORDER BY total_donation DESC LIMIT 5;
+  e. SELECT SUM(amount) AS total_donation, donor FROM donations GROUP BY donor ORDER BY total_donation DESC OFFSET 5 LIMIT 10;
