@@ -1,0 +1,21 @@
+Change this query so that you are using aliasing:
+
+  SELECT p.name, c.salary, c.vacation_days
+  FROM professor AS p
+  JOIN compensation AS c
+  ON p.id = c.professor_id;
+
+Build an Employees table and a Shifts table with appropriate primary and foreign keys.
+Then, write queries to find the following information:
+
+a. SELECT * FROM employees;
+   SELECT * FROM shifts;
+
+b. SELECT * FROM employees CROSS JOIN shifts;
+
+Hey abraham, so i tried to answer the remaining questions at the checkpoint, but i could not find the
+tables that the questions were referring to. I tried to answer the questions without the tables,
+but it became too confusing to answer without any data...
+
+Do you have access to the tables? If you can find them, could you send them to me? I will try to answer
+the questions again with the data.
