@@ -1,0 +1,43 @@
+Create a database for the model we built in the example.
+Create a SQL file that creates the tables and inserts sample data (the questions below will help you create the data).
+Write queries that demonstrate the following scenarios:
+
+a. SELECT *
+   FROM guests
+   WHERE booking_id = null;
+
+b. SELECT *
+   FROM bookings
+   WHERE guest_name={} AND check_in={};
+
+   {} is the info given to find the specific item in the table
+
+c. SELECT *
+   FROM bookings
+   WHERE guest_name={};
+
+d. SELECT COUNT(DISTINCT guest_name)
+   FROM bookings
+   WHERE room_number = {};
+
+Build a database for the students/classes data model.
+Create a SQL file that creates the tables and inserts sample data (the questions below will help you create the data).
+Write queries that demonstrate the following scenarios:
+
+a. SELECT name
+   FROM grades
+   WHERE class_name = {};
+
+b. SELECT COUNT(grade_id)
+   FROM grades
+   WHERE class_name = {} AND grade = "A";
+
+   repeat for B-F
+
+c. SELECT class_name, total_students
+   FROM classes;
+
+d. SELECT class_name
+   FROM classes
+   ORDER_BY total_students DESC
+   LIMIT 1;
