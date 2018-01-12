@@ -1,0 +1,38 @@
+Given a dogs table, adoptions table, adopters table, and volunteers table,
+write queries to retrieve the following information.
+All tables are described below.
+
+1. Create a list of all volunteers. If the volunteer is fostering a dog, include each dog as well.
+
+  SELECT v.name, d.dog_name
+  FROM volunteers AS v,
+  (SELECT name AS dog_name FROM dogs WHERE in_foster = true) AS d;
+
+2. List the adopter’s name and the pet’s name for each animal adopted within the past month
+to be displayed as a ‘Happy Tail’ on social media.
+
+  SELECT dog, adopter
+  FROM adoptions
+  WHERE date > 2017-11-30 AND date < 2018-01-01;
+
+3. Create a list of adopters who have not yet chosen a dog to adopt and generate
+all possible combinations of adopters and available dogs.
+
+  SELECT name FROM volunteers WHERE available_to_foster = true
+  CROSS JOIN (SELECT name AS dog_name FROM dogs WHERE in_foster = false);
+
+4. Display a list of all cats and all dogs who have not been adopted.
+
+  SELECT d.dog_name, c.cat_name
+  FROM (SELECT dogs.name AS dog_name WHERE dogs.in_foster = false) AS d,
+  (SELECT cats.name AS cat_name WHERE cats.adoption_date = null) AS c;
+
+
+5. Create a list of volunteers who are available to foster.
+If they currently are fostering a dog, include the dog.
+Also include all dogs who are not currently in foster homes.
+
+  SELECT v.name, d.dog_name, e.no_foster_dog
+  FROM (SELECT name FROM volunteers WHERE available_to_foster = true) AS v,
+  (SELECT name AS dog_name FROM dogs WHERE in_foster = true) AS d,
+  (SELECT name AS no_foster_dog FROM dogs WHERE in_foster = false) AS e;
