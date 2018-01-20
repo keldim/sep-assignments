@@ -10,4 +10,11 @@ module Selection
     data = Hash[columns.zip(row)]
     new(data)
   end
+
+  def find_by(attribute, value)
+    connection.execute <<-SQL
+    SELECT #{columns.join ","} FROM #{table}
+    WHERE #{attribute} = #{BlocRecord::Utility.sql_strings(value)};
+    SQL
+  end
 end

@@ -16,6 +16,12 @@ module BlocRecord
       string.downcase
     end
 
+    def camelize(snake_cased_word)
+       string = snake_cased_word
+       string.split('_').map(&:capitalize).join('')
+    end
+
+
     def sql_strings(value)
       case value
       when String
