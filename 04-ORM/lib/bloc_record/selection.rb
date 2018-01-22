@@ -34,6 +34,35 @@ module Selection
        init_object_from_row(row)
      end
 
+     def method_missing(method, *args, &block)
+        if method == :find_by_name
+          find_by(:name, *args[0])
+        elsif method == :find_by_phone_number
+          find_by(:phone_number, *args[0])
+        end
+      end
+
+      def find_each(query = {})
+          rows = connection.execute <<-SQL
+            SELECT #{columns.join ","} FROM #{table}
+            LIMIT #{query[:batch_size]};
+          SQL
+
+          for row in rows_to_array(rows)
+            yield(row)
+          end
+        end
+
+        def find_in_batches(query = {})
+          rows = connection.execute <<-SQL
+            SELECT #{columns.join ","} FROM #{table}
+            LIMIT #{query[:batch_size]};
+          SQL
+
+          yield(rows_to_array(rows))
+        end
+
+
 
      def take(num=1)
           if num > 1
