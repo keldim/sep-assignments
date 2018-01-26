@@ -12,7 +12,7 @@ module Persistence
     self.save! rescue false
   end
 
-
+  
   def save!
 
     unless self.id
@@ -34,19 +34,40 @@ module Persistence
 
 
   def update_attribute(attribute, value)
-     self.class.update(self.id, { attribute => value })
-   end
+    self.class.update(self.id, { attribute => value })
+  end
 
-   def update_attributes(updates)
-        self.class.update(self.id, updates)
-      end
+  def update_attributes(updates)
+    self.class.update(self.id, updates)
+  end
 
+  def destroy
+    self.class.destroy(self.id)
+  end
 
   module ClassMethods
 
     def update_all(updates)
-          update(nil, updates)
-        end
+      update(nil, updates)
+    end
+
+    def destroy(*id)
+      if id.length > 1
+        where_clause = "WHERE id IN (#{id.join(",")});"
+      else
+        where_clause = "WHERE id = #{id.first};"
+      end
+
+
+
+
+      connection.execute <<-SQL
+      DELETE FROM #{table} #{where_clause}
+      SQL
+
+      true
+    end
+
 
     def create(attrs)
       attrs = BlocRecord::Utility.convert_keys(attrs)
@@ -63,29 +84,51 @@ module Persistence
       new(data)
     end
 
-  def update(ids, updates)
-           # #1
-           updates = BlocRecord::Utility.convert_keys(updates)
-           updates.delete "id"
-           # #2
-           updates_array = updates.map { |key, value| "#{key}=#{BlocRecord::Utility.sql_strings(value)}" }
+    def update(ids, updates)
+      # #1
+      updates = BlocRecord::Utility.convert_keys(updates)
+      updates.delete "id"
+      # #2
+      updates_array = updates.map { |key, value| "#{key}=#{BlocRecord::Utility.sql_strings(value)}" }
 
-           if ids.class == Fixnum
-          where_clause = "WHERE id = #{ids};"
-        elsif ids.class == Array
-          where_clause = ids.empty? ? ";" : "WHERE id IN (#{ids.join(",")});"
-        else
-          where_clause = ";"
-        end
+      if ids.class == Fixnum
+        where_clause = "WHERE id = #{ids};"
+      elsif ids.class == Array
+        where_clause = ids.empty? ? ";" : "WHERE id IN (#{ids.join(",")});"
+      else
+        where_clause = ";"
+      end
 
-           # #3
-           connection.execute <<-SQL
-             UPDATE #{table}
-             SET #{updates_array * ","} #{where_clause}
-           SQL
+      # #3
+      connection.execute <<-SQL
+      UPDATE #{table}
+      SET #{updates_array * ","} #{where_clause}
+      SQL
 
-           true
-         end
+      true
+    end
+
+    def destroy_all(conditions_hash=nil)
+      if conditions_hash && !conditions_hash.empty?
+        conditions_hash = BlocRecord::Utility.convert_keys(conditions_hash)
+        conditions = conditions_hash.map {|key, value| "#{key}=#{BlocRecord::Utility.sql_strings(value)}"}.join(" and ")
+
+        connection.execute <<-SQL
+        DELETE FROM #{table}
+        WHERE #{conditions};
+        SQL
+      else
+
+
+
+        connection.execute <<-SQL
+        DELETE FROM #{table}
+        SQL
+      end
+
+      true
+    end
+
 
 
   end
