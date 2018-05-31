@@ -92,6 +92,10 @@ module Persistence
     def method_missing(method, *args, &block)
       if method == :update_name
         update(self.id, name: args[0])
+      elsif method == :update_phone_number
+        update(self.id, phone_number: args[0])
+      elsif method == :update_email
+        update(self.id, email: args[0])
       end
     end
 
